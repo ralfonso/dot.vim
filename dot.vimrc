@@ -51,8 +51,7 @@ endif
 set termencoding=utf-8
 set encoding=utf-8
 
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set nolist
 
 " basic options
 set cmdheight=1
@@ -136,6 +135,7 @@ filetype plugin on
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+\ list listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 let g:py_select_leading_comments = 0
 
@@ -154,3 +154,6 @@ map <C-W>' :tabnext<CR>
 syntax on
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+map <Leader>v :tab sp ~/.vimrc<CR>
+map <silent> <Leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
