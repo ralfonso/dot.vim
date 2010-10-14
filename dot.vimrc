@@ -137,6 +137,8 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 \ list listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 tabstop=4
+
 let g:py_select_leading_comments = 0
 
 " Make <space> in normal mode go down a page rather than left a character
