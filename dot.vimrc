@@ -11,7 +11,7 @@ call pathogen#runtime_append_all_bundles()
 set wildignore+=*.o,*.obj,.git,*.pyc
 
 if has('gui_running')
-    set guifont=Mensch\ 9
+    set guifont=Mensch:h12
 	set guioptions-=T
 	set guioptions+=g
 	set guioptions+=i
@@ -132,12 +132,19 @@ filetype on
 filetype plugin on
 ""filetype indent on
 
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
+set expandtab
+set shiftwidth=4
+set tabstop=4
+
+autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType phtml setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
+autocmd FileType php setlocal expandtab shiftwidth=4 tabstop=4 omnifunc=phpcomplete#CompletePHP
+autocmd FileType ruby setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 \ list listchars=tab:>.,trail:.,extends:#,nbsp:.
-
-autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 tabstop=4
 
 let g:py_select_leading_comments = 0
 
@@ -159,3 +166,9 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 map <Leader>v :tab sp ~/.vimrc<CR>
 map <silent> <Leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" vbell on osx, which doesn't work anyway
+set vb
+
+" load project-based tags
+set tags=~/.vim/mytags/$PROJ
