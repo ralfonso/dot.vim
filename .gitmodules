@@ -13,9 +13,3 @@
 [submodule "pyflakes-pathogen"]
 	path = pyflakes-pathogen
 	url = https://github.com/mitechie/pyflakes-pathogen.git
-[submodule "bundle/pyflakes-pathogen"]
-	path = bundle/pyflakes-pathogen
-	url = https://github.com/mitechie/pyflakes-pathogen.git
-[submodule "bundle/screen"]
-	path = bundle/screen
-	url = https://github.com/ervandew/screen.git
