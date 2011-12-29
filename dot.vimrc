@@ -11,6 +11,10 @@ call pathogen#runtime_append_all_bundles()
 set wildignore+=*.o,*.obj,.git,*.pyc
 
 if has('gui_running')
+    "autocmd GUIEnter * colorscheme tomorrow-night-eighties 
+    "colorscheme tomorrow-night
+    colorscheme solarized
+
     set guifont=Mensch:h12
 	set guioptions-=T
 	set guioptions+=g
@@ -21,7 +25,6 @@ if has('gui_running')
 	set guioptions+=r
 	set guioptions+=e
 	set guioptions+=p
-	colorscheme tango-dark
 	set cursorline
 	set number
 
@@ -137,14 +140,18 @@ set shiftwidth=4
 set tabstop=4
 
 autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType htmldjango setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType phtml setlocal expandtab shiftwidth=2 tabstop=2
-autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
+autocmd FileType clojure setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType php setlocal expandtab shiftwidth=4 tabstop=4 omnifunc=phpcomplete#CompletePHP
-autocmd FileType ruby setlocal expandtab shiftwidth=4 tabstop=4
-\ formatoptions+=croq softtabstop=4 smartindent
+autocmd FileType xml setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+\ formatoptions+=croq softtabstop=2 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 \ list listchars=tab:>.,trail:.,extends:#,nbsp:.
+au BufRead,BufNewFile *.pp   setfiletype puppet
 
 let g:py_select_leading_comments = 0
 
@@ -170,5 +177,30 @@ map <silent> <Leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 " vbell on osx, which doesn't work anyway
 set vb
 
+runtime macros/matchit.vim
+
 " load project-based tags
 set tags=~/.vim/mytags/$PROJ
+
+let vimfiles=$HOME . "/.vim"
+
+let sep = ":"
+let classpath = join(
+   \[".",
+   \ "src", "src/",
+   \ "test", "src/test/clojure", "src/test/resources",
+   \ "classes", "classes",
+   \ "lib/*", "lib/",
+   \ "bin",
+   \ vimfiles."/lib/server-2.3.0.jar",
+   \],
+   \ sep)
+
+" Settings for VimClojure
+let vimclojureRoot = vimfiles."/bundle/vimclojure"
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 0
+let vimclojure#NailgunClient = vimclojureRoot."/lib/nailgun/ng"
